@@ -1,0 +1,1 @@
+<x-admin.layout title="Filmy a seriály - detail"></x-admin.layout>
