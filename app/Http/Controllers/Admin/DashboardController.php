@@ -15,4 +15,14 @@ class DashboardController extends Controller
     {
         return view('admin.users.users');
     }
+
+    public function shows()
+    {
+        return view('admin.shows.shows');
+    }
+
+    public function reviews()
+    {
+        return view('admin.reviews.reviews');
+    }
 }

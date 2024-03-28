@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -13,6 +14,7 @@ use Illuminate\Notifications\Notifiable;
  * @property string $last_name
  * @property string $email
  * @property string $password
+ * @property string $role
  * */
 class User extends Authenticatable
 {
@@ -54,5 +56,10 @@ class User extends Authenticatable
     public function reviews(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Review::class);
+    }
+
+    public function fullName(): Attribute
+    {
+        return Attribute::make(get: fn() => "$this->first_name $this->last_name");
     }
 }

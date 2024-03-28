@@ -12,7 +12,7 @@ class UpdateUserRequest extends FormRequest
             'first_name' => ['required'],
             'last_name' => ['required'],
             'email' => ['required', 'email', 'max:254'],
-            'password' => ['required', 'confirmed'],
+            'password' => ['nullable', 'confirmed'],
             'password_confirmation' => ['required_with:password']
         ];
     }
