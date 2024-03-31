@@ -8,4 +8,7 @@ Route::controller(PagesController::class)->group(function () {
    Route::get('/filmy', 'movies')->name('movies');
    Route::get('/prihlaseni', 'showLogin')->name('show-login');
    Route::get('/registrace', 'showRegister')->name('show-register');
+
+   Route::get('/serial/{show}', 'serialDetail')->name('serial.show');
+   Route::get('/film/{show}', 'movieDetail')->name('movie.show');
 });

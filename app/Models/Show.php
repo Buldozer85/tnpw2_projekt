@@ -37,9 +37,9 @@ class Show extends Model
         ];
     }
 
-    public function reviews(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function reviews()
     {
-        return $this->hasMany(Review::class);
+        return $this->belongsTo(Review::class);
     }
 
     public function getMeta(string $key): ?string {

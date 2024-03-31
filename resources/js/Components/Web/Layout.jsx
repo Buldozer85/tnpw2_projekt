@@ -22,7 +22,7 @@ export default function Layout({ children, title }) {
                             <span className="sr-only">Your Company</span>
                             <img
                                 className="h-8 w-auto"
-                                src="images/logo-no-background.png"
+                                src="/images/logo-no-background.png"
                                 alt=""
                             />
                         </a>

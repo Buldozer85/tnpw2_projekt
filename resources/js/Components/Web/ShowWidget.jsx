@@ -7,21 +7,35 @@ const files = [
     },
     // More files...
 ]
-export function ShowWidget() {
+export function ShowWidget({series}) {
+    let href = '#';
+    if(series.type == 'series') {
+        href = `/serial/${series.id}`;
+    } else {
+        href = `/film/${series.id}`;
+    }
     return (
-        <ul role="list" className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
-            {files.map((file) => (
-                <li key={file.source} className="relative">
-                    <div className="group aspect-h-7 aspect-w-10 block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
-                        <img src={file.source} alt="" className="pointer-events-none object-cover group-hover:opacity-75" />
-                        <button type="button" className="absolute inset-0 focus:outline-none">
-                            <span className="sr-only">View details for {file.title}</span>
-                        </button>
-                    </div>
-                    <p className="pointer-events-none mt-2 block truncate text-sm font-medium text-gray-900">{file.title}</p>
-                    <p className="pointer-events-none block text-sm font-medium text-gray-500">{file.size}</p>
-                </li>
-            ))}
-        </ul>
+        <article
+            key={series.id}
+            className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pb-8 pt-80 sm:pt-48 lg:pt-80"
+        >
+            <img src={"/storage/shows/" + series.icon} alt="" className="absolute inset-0 -z-10 h-full w-full object-cover" />
+            <div className="absolute inset-0 -z-10 bg-gradient-to-t from-gray-900 via-gray-900/40" />
+            <div className="absolute inset-0 -z-10 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
+
+            <div className="flex flex-wrap items-center gap-y-1 overflow-hidden text-sm leading-6 text-gray-300">
+                <div className="-ml-4 flex items-center gap-x-4">
+                    <svg viewBox="0 0 2 2" className="-ml-0.5 h-0.5 w-0.5 flex-none fill-white/50">
+                        <circle cx={1} cy={1} r={1} />
+                    </svg>
+                </div>
+            </div>
+            <h3 className="mt-3 text-lg font-semibold leading-6 text-white">
+                <a href={href}>
+                    <span className="absolute inset-0" />
+                    {series.name}
+                </a>
+            </h3>
+        </article>
     )
 }
