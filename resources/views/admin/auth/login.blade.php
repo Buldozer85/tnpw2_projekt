@@ -16,11 +16,14 @@
     </div>
 
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+
         <form class="space-y-6" action="{{ route('admin.auth.login') }}" method="POST">
             @csrf
            <x-admin.forms.input type="email" name="email" id="email" label="E-mail" />
             <x-admin.forms.input type="password" name="password" id="password" label="Heslo"/>
-
+            @error('login-error')
+            <p class="mt-2 text-sm text-red-600" id="login-error">{{ $message }}</p>
+            @enderror
             <div>
                 <x-admin.forms.button type="long">Přihlásit se</x-admin.forms.button>
             </div>

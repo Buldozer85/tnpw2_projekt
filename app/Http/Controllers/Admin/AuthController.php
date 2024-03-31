@@ -23,11 +23,11 @@ class AuthController extends Controller
             ->first();
 
         if(is_null($user)) {
-            return redirect()->withInput()->withErrors(['login-error' => 'Uživatel se zadanými údaji neexistuje'])->back();
+            return redirect()->back()->withInput()->withErrors(['login-error' => 'Uživatel se zadanými údaji neexistuje']);
         }
 
         if(!Hash::check($request->get('password'), $user->password)) {
-            return redirect()->withInput()->withErrors(['login-error' => 'Zadali jste nesprávné heslo'])->back();
+            return redirect()->back()->withInput()->withErrors(['login-error' => 'Zadali jste nesprávné heslo']);
         }
 
         Auth::login($user);
