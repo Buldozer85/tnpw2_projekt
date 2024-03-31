@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ShowsRequest extends FormRequest
+class UpdateShowRequest extends FormRequest
 {
     public function rules(): array
     {
@@ -12,7 +12,6 @@ class ShowsRequest extends FormRequest
             'type' => ['required'],
             'name' => ['required'],
             'date_of_premiere' => ['required', 'date'],
-            'description' => ['required'],
         ];
     }
 

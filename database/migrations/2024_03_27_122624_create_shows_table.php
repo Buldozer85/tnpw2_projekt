@@ -12,8 +12,8 @@ return new class extends Migration {
             $table->string('type');
             $table->string('name');
             $table->dateTime('date_of_premiere');
-            $table->string('description');
             $table->string('icon');
+            $table->json('parameters')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

@@ -18,7 +18,7 @@
                                 <x-admin.forms.input label="E-mail" name="email" id="email" placeholder="pepa@seznam.cz" required value="{{ $user->email }}"/>
                             </div>
                             <div class="sm:col-span-3">
-                                <x-admin.forms.select :selected="$user->role" name="role" id="role" :options="$roles" label="Role"></x-admin.forms.select>
+                                <x-admin.forms.select :selected="$user->role->value" name="role" id="role" :options="$roles" label="Role"></x-admin.forms.select>
                             </div>
 
                             <div class="sm:col-span-3">

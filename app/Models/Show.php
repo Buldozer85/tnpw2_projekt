@@ -2,13 +2,16 @@
 
 namespace App\Models;
 
+use App\Enums\Role;
+use App\Enums\ShowType;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Te7aHoudini\LaravelTrix\Traits\HasTrixRichText;
 
 /**
  * @property integer $id
- * @property string $type
+ * @property ShowType $type
  * @property string $name
  * @property Carbon $date_of_premiere
  * @property string $description
@@ -16,7 +19,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Show extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, HasTrixRichText;
 
     protected $fillable = [
         'type',
@@ -30,11 +33,27 @@ class Show extends Model
     {
         return [
             'date_of_premiere' => 'datetime',
+            'type' => ShowType::class
         ];
     }
 
     public function reviews(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Review::class);
+    }
+
+    public function getMeta(string $key): ?string {
+        $params = json_decode($this->parameters, true);
+
+        if(!array_key_exists($key, $params)) {
+            return null;
+        }
+
+        return $params[$key];
+    }
+
+    public function getTrixRichText(string $field)
+    {
+        return $this->trixRichText()->where('field', $field)->first()?->content;
     }
 }
