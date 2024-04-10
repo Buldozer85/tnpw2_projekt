@@ -11,6 +11,11 @@ return new class extends Migration {
             $table->id();
             $table->string('content');
             $table->string('rating');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('show_id');
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('show_id')->references('id')->on('shows');
             $table->softDeletes();
             $table->timestamps();
         });

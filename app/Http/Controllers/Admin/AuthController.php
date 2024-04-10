@@ -6,6 +6,7 @@ use App\Enums\Role;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Models\User;
+use http\Env\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -32,7 +33,7 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('admin.shows.shows');
+        return redirect()->route('admin.shows.show');
     }
 
     public function logout()
@@ -40,4 +41,6 @@ class AuthController extends Controller
         Auth::logout();
         return redirect()->route('admin.auth.show-login');
     }
+
+
 }

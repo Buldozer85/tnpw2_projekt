@@ -46,7 +46,7 @@ class ShowsController extends Controller
             $parameters['still_running'] = $request->get('still_running');
         }
 
-        $this->parameters = json_encode($parameters);
+        $show->parameters = json_encode($parameters);
 
         $show->save();
     }
@@ -80,6 +80,8 @@ class ShowsController extends Controller
 
     public function delete(Show $show)
     {
+        $show->reviews()->delete();
+
         $show->delete();
 
         return redirect()->back();

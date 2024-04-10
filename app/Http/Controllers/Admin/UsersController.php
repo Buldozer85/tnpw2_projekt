@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserProfileRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\Review;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -58,6 +59,12 @@ class UsersController extends Controller
 
     public function delete(User $user)
     {
+
+        foreach ($user->reviews as $review) {
+            Review::find($review->id)->delete();
+        }
+
+
         $user->delete();
 
         return redirect()->back();

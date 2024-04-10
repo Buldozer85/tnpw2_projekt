@@ -9,6 +9,10 @@ class AdministrationMiddleware
 {
     public function handle(Request $request, Closure $next)
     {
+        if (is_null($request->user())) {
+            return  redirect()->route('admin.auth.show-login');
+        }
+
         if($request->user()->role->value !== 'admin') {
             abort(403);
         }

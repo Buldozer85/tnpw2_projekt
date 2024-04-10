@@ -1,6 +1,31 @@
-import {Head} from "@inertiajs/react";
+import {Head, router, usePage} from "@inertiajs/react";
+import {useState} from "react";
+import Input from "../../Components/Web/Input.jsx";
 
 export default function Register() {
+    const { errors } = usePage().props;
+
+    const [values, setValues] = useState({
+        email: '',
+        first_name: '',
+        last_name: '',
+        password: '',
+        password_confirmation: ''
+    })
+
+    function handleChange(e) {
+        const key = e.target.id;
+        const value = e.target.value
+        setValues(values => ({
+            ...values,
+            [key]: value,
+        }))
+    }
+    function handleSubmit(e) {
+        e.preventDefault()
+        router.post('/register', values)
+    }
+
     return (
         <main className="h-full">
             <Head title="Registrace"/>
@@ -11,7 +36,7 @@ export default function Register() {
                             <img
                                 className="h-10 w-auto"
                                 src="images/logo-no-background.png"
-                                alt="Your Company"
+                                alt="MovieBox"
                             />
                             <h2 className="mt-8 text-2xl font-bold leading-9 tracking-tight text-gray-900">
                                 Vytvořte si účet
@@ -20,64 +45,26 @@ export default function Register() {
 
                         <div className="mt-10">
                             <div>
-                                <form action="#" method="POST" className="space-y-6">
+                                <form onSubmit={handleSubmit} method="POST" className="space-y-6">
+                                    <div className="flex flex-row w-full justify-between gap-x-4 items-baseline">
+                                       <Input id={'first_name'} name={'first_name'} required label={'Jméno'} changeEvent={handleChange} error={errors.first_name} value={values.first_name}/>
+                                        <Input id={'last_name'} name={'last_name'} required label={'Příjmení'} changeEvent={handleChange} error={errors.last_name} value={values.last_name}/>
+                                    </div>
                                     <div>
-                                        <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
-                                            Email
-                                        </label>
-                                        <div className="mt-2">
-                                            <input
-                                                id="email"
-                                                name="email"
-                                                type="email"
-                                                autoComplete="email"
-                                                required
-                                                className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                            />
-                                        </div>
+                                        <Input id={'email'} name={'email'} required label={'Email'} autoComplete={'email'} changeEvent={handleChange} type={'email'} error={errors.email} value={values.email}/>
                                     </div>
 
-                                    <div className="flex flex-row w-full justify-between">
-                                        <div>
-                                            <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
-                                                Heslo
-                                            </label>
-                                            <div className="mt-2">
-                                                <input
-                                                    id="password"
-                                                    name="password"
-                                                    type="password"
-                                                    autoComplete="current-password"
-                                                    required
-                                                    className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                                />
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            <label htmlFor="password_confirmation" className="block text-sm font-medium leading-6 text-gray-900">
-                                                Heslo znovu
-                                            </label>
-                                            <div className="mt-2">
-                                                <input
-                                                    id="password_confirmation"
-                                                    name="password_confirmation"
-                                                    type="password"
-                                                    required
-                                                    className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                                />
-                                            </div>
-                                        </div>
+                                    <div className="flex flex-row w-full justify-between items-baseline gap-x-4">
+                                        <Input id={'password'} name={'password'} required label={'Heslo'} changeEvent={handleChange} type={'password'} autoComplete={'new-password'} error={errors.password} value={values.password}/>
+                                        <Input id={'password_confirmation'} name={'password_confirmation'} required label={'Heslo znovu'} changeEvent={handleChange} type={'password'} error={errors.password_confirmation} value={values.password_confirmation}></Input>
                                     </div>
-
-
 
                                     <div>
                                         <button
                                             type="submit"
-                                            className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                            className="flex w-full justify-center rounded-md bg-gray-900 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600"
                                         >
-                                            Přihlásit se
+                                            Zaregistrovat se
                                         </button>
                                     </div>
                                 </form>

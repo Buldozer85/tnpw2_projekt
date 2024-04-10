@@ -1,4 +1,10 @@
-<div class="px-4 sm:px-6 lg:px-8">
+<div class="px-4 sm:px-6 lg:px-8" x-data="{
+    openModal: false,
+    params: {
+        title: '',
+        route: ''
+    }
+}">
     <div class="sm:flex sm:items-center">
         <div class="sm:flex-auto">
             <h1 class="text-base font-semibold leading-6 text-gray-900">Hodnocení</h1>

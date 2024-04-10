@@ -1,24 +1,24 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\App;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class UpdateUserProfileRequest extends FormRequest
+class RegisterRequest extends FormRequest
 {
     public function rules(): array
     {
         return [
             'first_name' => ['required', 'string'],
             'last_name' => ['required', 'string'],
-            'email' => ['required', 'email', 'max:254', Rule::unique('users', 'email')->ignore($this->user()->id)],
-            'password' => ['nullable', 'confirmed'],
+            'email' => ['required', 'email', 'unique:users'],
+            'password' => ['required', 'confirmed'],
             'password_confirmation' => ['required_with:password']
+
         ];
     }
 
-    public function messages()
+    public function messages(): array
     {
         return [
             'first_name.required' => 'Křestní jméno je povinné',
@@ -28,6 +28,8 @@ class UpdateUserProfileRequest extends FormRequest
             'email.required' => 'E-mail je povinný',
             'email.string' => 'E-mail musí být textový řetězec',
             'email.unique' => 'Účet s tímto e-mailem již existuje',
+            'password.required' => 'Heslo je povinné',
+            'password.string' => 'Heslo musí být textový řetězec',
             'password.confirmed' => 'Zadaná hesla se neshodují',
             'password_confirmation.required_with' => 'Heslo znovu musí být vyplněno',
         ];

@@ -5,9 +5,10 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ReviewsController;
 use App\Http\Controllers\Admin\ShowsController;
 use App\Http\Controllers\Admin\UsersController;
+use App\Http\Middleware\AdministrationMiddleware;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('admin')->group(function () {
+Route::middleware(AdministrationMiddleware::class)->group(function () {
 
     Route::controller(DashboardController::class)->group(function () {
         Route::get('/', 'index');
@@ -22,7 +23,7 @@ Route::middleware('admin')->group(function () {
         Route::get('/vytvorit', 'showCreate')->name('users.showCreate');
         Route::post('/create', 'create')->name('users.create');
         Route::post('/update/{user}', 'update')->name('users.update');
-        Route::post('/delete/{user}', 'delete')->name('user.delete');
+        Route::get('/delete/{user}', 'delete')->name('user.delete');
     });
 
     Route::get('/profil', [UsersController::class, 'showProfile'])->name('user.profile');
@@ -33,11 +34,11 @@ Route::middleware('admin')->group(function () {
         Route::get('/vytvorit', 'showCreate')->name('shows.showCreate');
         Route::post('/create', 'create')->name('shows.create');
         Route::post('/update/{show}', 'update')->name('shows.update');
-        Route::post('/smazat/{show}', 'delete')->name('show.delete');
+        Route::get('/delete/{show}', 'delete')->name('show.delete');
     });
 
     Route::controller(ReviewsController::class)->prefix('/recenze')->group(function () {
-        Route::post('/smazat', 'delete')->name('review.delete');
+        Route::get('/delete/{review}', 'delete')->name('review.delete');
     });
 });
 
