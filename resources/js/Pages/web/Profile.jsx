@@ -53,11 +53,11 @@ export default function Profile({loggedUser}) {
 
 
                                 <div className="sm:col-span-3">
-                                    <Input label="Heslo" name="password" id="password"  type="password" changeEvent={handleChange} error={errors.password}/>
+                                    <Input label="Heslo" name="password" id="password"  type="password" changeEvent={handleChange} error={errors.password} value={values.password}/>
                                 </div>
 
                                 <div className="sm:col-span-3">
-                                    <Input label="Heslo znovu" name="password_confirmation" id="password_confirmation"  type="password" changeEvent={handleChange} error={errors.password_confirmation}/>
+                                    <Input label="Heslo znovu" name="password_confirmation" id="password_confirmation"  type="password" changeEvent={handleChange} error={errors.password_confirmation} value={values.password_confirmation}/>
                                 </div>
                             </div>
                         </div>

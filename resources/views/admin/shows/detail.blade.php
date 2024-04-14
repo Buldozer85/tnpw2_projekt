@@ -9,7 +9,7 @@
                 <p class="text-center text-sm pt-12">{{ $show->icon }}</p>
             </div>
 
-            <form action="{{ route('admin.shows.update', $show->id) }}" method="POST" class="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl ">
+            <form action="{{ route('admin.shows.update', $show->id) }}" method="POST" class="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl " enctype="multipart/form-data">
                 @csrf
                 <div class="px-4 py-6 sm:p-8">
                     <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -46,7 +46,7 @@
                             </div>
 
                             <div class="sm:col-span-3 mt-4">
-                                <x-admin.forms.checkbox label="Pořád probíhá" name="still_running" id="still_running" is-checked="{{ $show->getMeta('still_running') }}" value="{{ $show->getMeta('still_running') ?? '' }}"/>
+                                <x-admin.forms.checkbox label="Pořád probíhá" name="still_running" id="still_running" is-checked="{{ $show->getMeta('still_running') }}" value="1"/>
                             </div>
                         </div>
                     </div>

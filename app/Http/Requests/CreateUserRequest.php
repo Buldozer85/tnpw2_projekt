@@ -15,7 +15,7 @@ class CreateUserRequest extends FormRequest
             'email' => ['required', 'email', Rule::unique('users', 'email')],
             'password' => ['required', 'string', 'confirmed'],
             'password_confirmation' => ['required_with:password', 'string'],
-            'role' => Rule::in(['user', 'administrator'])
+            'role' => Rule::in(['user', 'admin'])
         ];
     }
 

@@ -19,7 +19,7 @@ class ShowResource extends JsonResource
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'icon' => $this->icon,
-            'rating' => $this->rating,
+            'rating' => round($this->rating, 2),
             'reviews_number'=> $this->reviews_number,
             'count_of_seasons' => $this->getMeta('count_of_seasons'),
             'count_of_episodes' => $this->getMeta('count_of_episodes'),

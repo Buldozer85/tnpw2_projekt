@@ -89,6 +89,6 @@ class UsersController extends Controller
 
         $user->save();
 
-        return redirect()->back();
+        return redirect()->route('admin.users.detail', $user->id);
     }
 }

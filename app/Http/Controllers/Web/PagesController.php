@@ -111,7 +111,7 @@ class PagesController extends Controller
             ->where('type', '=', ShowType::MOVIE->value)
             ->limit(50)
             ->get()
-            ->sortBy('reviews.rating');
+            ->sortByDesc('rating');
 
         $series = Show::query()
             ->with('reviews')
@@ -119,7 +119,7 @@ class PagesController extends Controller
             ->where('type', '=', ShowType::SERIES->value)
             ->limit(50)
             ->get()
-            ->sortBy('reviews.rating');
+            ->sortByDesc('rating');
 
         return Inertia::render('Leaderboards')->with([
             'moviesRanking' => ShowResource::collection($movies),

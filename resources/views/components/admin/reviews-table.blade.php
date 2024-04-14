@@ -38,7 +38,6 @@
 
                             <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0 space-x-4">
                                 <a @click="params.title = '{{ $review->id }}'; params.route = '{{ route('admin.review.delete', $review->id) }}'; openModal = true" class="text-red-600 hover:text-red-900 cursor-pointer">Smazat<span class="sr-only">, {{ $review->id }}</span></a>
-                                <a href="{{ route('admin.shows.detail', $review->id) }}" class="text-gray-900 hover:text-gray-600">Detail<span class="sr-only">, {{ $review->id }}</span></a>
                             </td>
                         </tr>
                     @endforeach

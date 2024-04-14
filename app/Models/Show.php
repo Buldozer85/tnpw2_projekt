@@ -6,6 +6,7 @@ use App\Enums\Role;
 use App\Enums\ShowType;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Te7aHoudini\LaravelTrix\Traits\HasTrixRichText;
@@ -21,7 +22,7 @@ use Te7aHoudini\LaravelTrix\Traits\HasTrixRichText;
  */
 class Show extends Model
 {
-    use HasTrixRichText;
+    use HasTrixRichText, HasFactory;
 
     protected $fillable = [
         'type',

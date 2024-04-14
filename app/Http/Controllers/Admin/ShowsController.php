@@ -49,6 +49,8 @@ class ShowsController extends Controller
         $show->parameters = json_encode($parameters);
 
         $show->save();
+
+        return redirect()->route('admin.shows.detail', $show->id);
     }
 
     public function update(Show $show, UpdateShowRequest $request)
@@ -70,12 +72,14 @@ class ShowsController extends Controller
         if($request->get('type') === 'series') {
            $parameters['count_of_seasons'] = $request->get('count_of_seasons');
            $parameters['count_of_episodes'] = $request->get('count_of_episodes');
-           $parameters['still_running'] = $request->get('still_running');
+           $parameters['still_running'] = $request->get('still_running') ?? false;
         }
 
         $show->parameters = json_encode($parameters);
 
         $show->save();
+
+        return redirect()->route('admin.shows.detail', $show->id);
     }
 
     public function delete(Show $show)

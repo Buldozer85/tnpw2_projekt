@@ -35,7 +35,7 @@ export default function Leaderboard({ shows }) {
                                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{show.rating}</td>
 
                                         <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                            <Link href={ (show.type === 'movie') ? '/film/' : '/serial/' + show.id} className="text-gray-900 hover:text-gray-600">
+                                            <Link href={ (show.type === 'movie') ? '/film/' + show.id : '/serial/' + show.id} className="text-gray-900 hover:text-gray-600">
                                                 Detail<span className="sr-only">, {show.name}</span>
                                             </Link>
                                         </td>

@@ -15,7 +15,7 @@ class UpdateUserRequest extends FormRequest
             'email' => ['required', 'email', 'max:254', Rule::unique('users', 'email')->ignore($this->user->id)],
             'password' => ['nullable', 'confirmed'],
             'password_confirmation' => ['required_with:password'],
-            'role' => Rule::in(['user', 'administrator'])
+            'role' => Rule::in(['user', 'admin'])
         ];
     }
 
